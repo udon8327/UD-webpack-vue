@@ -1,0 +1,733 @@
+@import '../sass/_color.sass'
+
+// ==================== Vue組件庫(Basic)目錄 ====================
+// Form
+//   Button 按鈕 -----> ud-button
+//   Input 輸入框 -----> ud-input
+//   Textarea 多行輸入框 -----> ud-textarea
+//   Radio 單選框 -----> ud-radio
+//   Checkbox 多選框 -----> ud-checkbox
+//   Select 下拉框 -----> ud-select
+//   SelectMultiple 下拉多選框 -----> ud-select-multiple
+//   SelectLink 連動下拉框 -----> ud-select-link
+//   SelectDate 日期連動下拉框 -----> ud-select-date
+//   SelectTwzip 台灣行政區連動下拉框 -----> ud-select-twzip
+//   Switch 開關 -----> ud-switch
+//   DatePicker 日期選擇器 -----> ud-date-picker
+//   Captcha 圖形驗證碼 -----> ud-captcha
+//   FormItem 表單驗證容器 -----> ud-form-item
+//   Form 表單驗證 -----> ud-form
+
+//Layout
+//   Flex 通用排版容器 -----> ud-flex
+//   Arrow CSS箭頭 -----> ud-arrow
+//   Collapse -----> ud-collapse
+//   Ratio 等比例自適應容器 -----> ud-ratio
+
+// Notice
+//   Alert 警告彈窗 -----> ud-alert
+//   Confirm 確認彈窗 -----> ud-confirm
+//   Modal 通用彈窗 -----> ud-modal
+//   Loading 載入中 -----> ud-loading
+
+// Tools
+//   Html 用戶自定義訊息 -----> ud-html
+//   Backtop 回到頂部 -----> ud-backtop
+//   Ellipsis 文字省略 -----> ud-ellipsis
+//   Phone 播打電話 -----> ud-phone
+//   Countdown 倒數計時 -----> ud-countdown
+//   QrCode 取得QRcode圖片 -----> ud-qrcode
+
+//-----------------------Global-----------------------
+html,#app
+  font-size: 62.5%
+  @media (min-width: 540px)
+    font-size: 72%
+  @media (max-width: 340px)
+    font-size: 54%
+
+//-----------------------Form-----------------------
+//Button 按鈕
+.ud-button
+  background-color: $main
+  border: 1px solid $main
+  color: #fff
+  padding: 10px
+  cursor: pointer
+  box-shadow: none
+  white-space: nowrap
+  appearance: none
+  text-align: center
+  outline: none !important
+  transition: .2s
+  position: relative
+  span
+    font-size: 1.6rem
+    line-height: 2rem
+  &:hover,&:focus
+    background-color: lighten($main, 10%)
+  &.is-plain
+    background-color: #fff
+    border: 1px solid $main
+    color: $main
+    &:hover,&:focus
+      background-color: $main
+      border: 1px solid $main
+      color: #fff
+  &.is-disabled
+    background-color: #ccc
+    border: 1px solid #aaa
+    color: #888
+    cursor: not-allowed
+  &.is-round
+    border-radius: 50px !important
+  &.is-circle
+    border-radius: 50% !important
+    width: 40px !important
+    height: 40px !important
+
+// Input 輸入框
+.ud-input
+  input
+    appearance: none
+    border-radius: 5px
+    border: 1px solid #cecece
+    font-size: 1.4rem
+    padding: 5px 10px
+    width: 100%
+    min-height: 40px
+    box-sizing: border-box
+    background-color: #fff
+    transition: all 0.2s ease
+    &::placeholder
+      color: #aaa
+    &:focus
+      outline: 0
+      border: 1px solid $main
+
+// Textarea 多行輸入框
+.ud-textarea
+  textarea
+    appearance: none
+    border-radius: 5px
+    border: 1px solid #cecece
+    box-sizing: border-box
+    background-color: #fff
+    font-size: 14px
+    padding: .75em
+    width: 100%
+    transition: border 0.2s ease
+    &::placeholder
+      color: #aaa
+    &:focus
+      outline: 0
+      border: 1px solid $main
+
+// Radio 單選框
+.ud-radio
+  &.is-flex
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    label
+      margin: 0 12px 0 0
+  label
+    margin-bottom: 5px
+    cursor: pointer
+    display: flex
+    align-items: center
+    input
+      position: absolute
+      left: -999px
+      opacity: 0
+      pointer-events: none
+      &:checked + .radio-decorator
+        border-color: $main
+        &:before
+          background-color: $main
+    .radio-decorator
+      margin-right: 6px
+      flex: 0 0 1em
+      width: 1em
+      height: 1em
+      border-radius: 3px
+      border: 1px solid #cecece
+      position: relative
+      cursor: pointer
+      &::before
+        content: ""
+        display: block
+        border-radius: 1em
+        background-size: contain
+        background-position: 100%
+        width: 50%
+        height: 50%
+        box-sizing: border-box
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%)
+
+// Checkbox 多選框
+.ud-checkbox
+  &.is-flex
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    label
+      margin: 0 12px 0 0
+  label
+    cursor: pointer
+    display: flex
+    align-items: center
+    p
+      font-size: 1.4rem
+    input
+      position: absolute
+      left: -999px
+      opacity: 0
+      pointer-events: none
+      &:checked + .checkbox-decorator
+        border-color: $main
+        &:before
+          background-color: $main
+          mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M8.76,56.2c-6.38-6.34,3.26-16,9.64-9.69L38,65.88,80.56,23.29c6.38-6.38,16.07,3.32,9.69,9.69L42.84,80.37a6.83,6.83,0,0,1-9.65,0Z"/></svg>')
+    .checkbox-decorator
+      margin-right: 6px
+      flex: 0 0 1em
+      width: 1em
+      height: 1em
+      border-radius: 3px
+      border: 1px solid #cecece
+      position: relative
+      cursor: pointer
+      &::before
+        content: ""
+        display: block
+        background-size: contain
+        background-position: 100%
+        width: 90%
+        height: 90%
+        box-sizing: border-box
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%)
+
+// Select 下拉框
+.ud-select
+  position: relative
+  &:before
+    content: ""
+    width: 0
+    height: 0
+    border-color: #cecece transparent transparent
+    border-style: solid
+    border-width: .3em .3em 0
+    top: 50%
+    margin-top: -.1em
+    right: 1em
+    position: absolute
+    z-index: 1
+    pointer-events: none
+  select
+    appearance: none
+    border-radius: 5px
+    border: 1px solid #cecece
+    background-color: #fff
+    font-size: 1.4rem
+    padding: 5px 10px
+    width: 100%
+    margin: 0
+    transition: border 0.2s ease
+    cursor: pointer
+    option
+      color: #333
+    &:focus
+      outline: 0
+      border: 1px solid $main
+    &[data-placeholder-selected]
+      color: #a8a8a8
+    &[multiple]
+      option:nth-of-type(1)
+        color: #a8a8a8
+
+// SelectMultiple 下拉多選框
+.ud-select-multiple
+  position: relative
+  cursor: pointer
+  &:before
+    content: ""
+    width: 0
+    height: 0
+    border-color: #333 transparent transparent
+    border-style: solid
+    border-width: 11px 7px 0
+    top: 50%
+    margin-top: -.2em
+    right: 10%
+    position: absolute
+    z-index: 1
+    pointer-events: none
+
+// Select 多選下拉框
+.ud-select-multiple
+  position: relative
+  cursor: pointer
+  &:before
+    content: ""
+    width: 0
+    height: 0
+    border-color: #333 transparent transparent
+    border-style: solid
+    border-width: 11px 7px 0
+    top: 50%
+    margin-top: -.2em
+    right: 10%
+    position: absolute
+    z-index: 1
+    pointer-events: none
+
+// SelectLink 連動下拉框
+// SelectDate 日期連動下拉框
+// SelectTwzip 台灣行政區連動下拉框
+.ud-select-link,.ud-select-twzip,.ud-select-date
+  margin-bottom: 0
+  &.is-flex
+    display: flex
+    justify-content: center
+    align-items: center
+    .ud-select
+      flex: 1 1 0
+      margin: 0 5px 0 0
+      &:last-of-type
+        margin: 0
+        + span,+ p
+          margin: 0 5px
+      + span,+ p
+        margin: 0 5px 0 0
+  .ud-select
+    margin-bottom: 5px
+
+// Switch 開關
+.ud-switch
+  label
+    cursor: pointer
+    display: flex
+    align-items: center
+    input
+      position: absolute
+      left: -999px
+      opacity: 0
+      pointer-events: none
+      &:checked + .switch-decorator
+        background: $main
+        .circle
+          margin-left: 20px
+    .switch-decorator
+      width: 40px
+      height: 20px
+      border-radius: 20px
+      background: #ccc
+      transition: all .2s ease
+      padding-left: 2px
+      margin-right: 6px
+      display: flex
+      align-items: center
+      .circle
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        background: #f7f7f7
+        transition: all .2s ease
+
+// Date-picker 日期選擇器
+.ud-date-picker
+  .ud-select
+    width: 100% !important
+  .el-input__prefix
+    display: none
+  .el-input__inner
+    padding: 0 !important
+    transition: all 0s ease
+  .el-input__suffix
+    display: none
+  input
+    appearance: none
+    border-radius: 0px
+    border: 1px solid #f3f5f6
+    font-size: 14px
+    padding: 5px 10px
+    width: 100%
+    min-height: 38px
+    box-sizing: border-box
+    background-color: #f3f5f6
+    transition: all 0.2s ease
+    cursor: pointer
+    font-size: 1.4rem
+    &::placeholder
+      color: #868686
+    &:focus
+      outline: 0
+      border: 1px solid $main
+
+// Captcha 圖形驗證碼
+.ud-captcha
+  position: relative
+  display: flex
+  .canvas-area
+    cursor: pointer
+    border: 1px solid #ced4da
+    img
+      height: 48px
+  .refresh
+    cursor: pointer
+    transform: translate(10px,5px)
+
+// FormItem 表單驗證容器
+.ud-form-item
+  margin-bottom: 1.8rem
+  &.is-flex
+    display: flex
+    .ud-form-item-left
+      flex: 0 0 30%
+      padding: 0 10px
+      text-align: right
+      label
+        line-height: 40px
+    .ud-form-item-right
+      flex: 1 1 0
+  &.is-error
+    .ud-form-item-right
+      position: relative
+      >div
+        input,textarea,select
+          border: 1px solid $red
+          &:focus
+            border: 1px solid $red
+      >p.error-message
+        color: $red
+        font-size: 1.2rem
+        position: absolute
+        left: 5px
+        white-space: nowrap
+
+// Form 表單驗證
+.ud-form
+  &.is-no-error-msg
+    .ud-form-item
+      &.is-error
+        .ud-form-item-right
+          .ud-input,.ud-textarea,.ud-select
+            input,textarea,select
+              border: 1px solid #cecece
+              &:focus
+                border: 1px solid #cecece
+          >p.error-message
+            display: none
+
+//-----------------------Layout-----------------------
+// Flex 通用排版容器
+.ud-flex
+  display: flex
+  justify-content: center
+  align-items: center
+  >*
+    flex: 1 1 50%
+    max-width: 50%
+  >* + *
+    margin-left: 15px
+
+// Arrow CSS箭頭
+.ud-arrow
+  border: solid black
+  border-width: 0 3px 3px 0
+  display: inline-block
+  padding: 3px
+  &.right
+    transform: rotate(-45deg)
+  &.left
+    transform: rotate(135deg)
+  &.up
+    transform: rotate(-135deg)
+  &.down
+    transform: rotate(45deg)
+
+// Collapse 摺疊容器
+.ud-collapse
+  transition: height .2s ease
+  height: 0
+  overflow: hidden
+  will-change: transform
+
+// Ratio 等比例自適應容器
+.ud-ratio
+  .ud-ratio-bg
+    overflow: hidden
+    width: 100%
+    padding-bottom: 100%
+    height: 0
+    background: url('https://i.imgur.com/s3w1Sm3.jpg') no-repeat center center
+    background-size: cover
+
+//-----------------------Notice-----------------------
+// Alert 警告彈窗
+.ud-alert
+  position: fixed
+  z-index: 120
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0,0,0,0.7)
+  .modal-wrapper
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .modal-header
+      p
+        font-size: 18px
+        margin-bottom: 15px
+        font-weight: bold
+    .modal-content
+      width: 90%
+      max-width: 420px
+      position: relative
+      background-color: #fff
+      max-height: 90%
+      overflow-y: auto
+      text-align: center
+      padding: 15px
+      box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.3)
+      p
+        text-align: center
+        font-size: 16px
+        margin-bottom: 20px
+        color: $text2
+      .modal-close
+        position: absolute
+        padding: 10px 15px
+        right: 0px
+        top: 0px
+        cursor: pointer
+        &:hover
+          i
+            color: #333
+        i
+          transition: all 0.2s ease
+          font-size: 18px
+          color: #777
+
+// Confirm 確認彈窗
+.ud-confirm
+  position: fixed
+  z-index: 100
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0,0,0,0.7)
+  .modal-wrapper
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .modal-content
+      width: 90%
+      max-width: 420px
+      position: relative
+      background-color: #fff
+      max-height: 90%
+      overflow-y: auto
+      text-align: center
+      padding: 15px
+      box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.3)
+      .modal-close
+        position: absolute
+        padding: 10px 15px
+        right: 0px
+        top: 0px
+        cursor: pointer
+        &:hover
+          i
+            color: #333
+        i
+          transition: all 0.2s ease
+          font-size: 18px
+          color: #777
+      p
+        font-size: 16px
+        margin-bottom: 20px
+        color: $text2
+        display: inline-block
+
+// Modal 通用彈窗
+.ud-modal
+  position: fixed
+  z-index: 100
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0,0,0,0.7)
+  .modal-wrapper
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .modal-content
+      width: 90%
+      max-width: 420px
+      position: relative
+      background-color: #fff
+      max-height: 90%
+      overflow-y: auto
+      text-align: center
+      padding: 15px
+      box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.3)
+      .modal-close
+        position: absolute
+        padding: 10px 15px
+        right: 0px
+        top: 0px
+        cursor: pointer
+        &:hover
+          i
+            color: #333
+        i
+          transition: all 0.2s ease
+          font-size: 18px
+          color: #777
+      p
+        font-size: 16px
+        margin-bottom: 20px
+        color: $text2
+        display: inline-block
+
+// Loading 載入中
+.ud-loading
+  position: fixed
+  z-index: 140
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0,0,0,0.7)
+  &.theme-white
+    background-color: rgba(255,255,255,0.7)
+    .modal-wrapper
+      .modal-content
+        .modal-header
+          .icon-css
+            border: 3px solid rgba(#000, 0.2)
+            border-top: 3px solid #000
+          i
+            color: #666
+        .modal-body
+          p
+            color: #666
+  .modal-wrapper
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .modal-content
+      .modal-header
+        text-align: center
+        margin-bottom: 5px
+        display: flex
+        justify-content: center
+        .icon-css
+          border: 3px solid rgba(#fff, 0.2)
+          border-top: 3px solid #fff
+          border-radius: 50%
+          width: 32px
+          height: 32px
+          animation: spin .5s linear infinite
+          @keyframes spin
+            0%
+              transform: rotate(0deg)
+            100% 
+              transform: rotate(360deg)
+        .icon-font
+          font-size: 24px
+          color: #999
+        .icon-img
+          max-width: 32px
+          margin-bottom: 5px
+          animation: spin 2s linear infinite
+          @keyframes spin
+            0%
+              transform: rotate(0deg)
+            100% 
+              transform: rotate(360deg)
+      .modal-body
+        p
+          font-size: 16px
+          color: #999
+
+//-----------------------Tools-----------------------
+// Html 用戶自定義訊息
+.ud-html
+  text-align: left
+  font-size: 1.4rem
+  h1
+    font-size: 32px
+  h2
+    font-size: 24px
+  h3
+    font-size: 18px
+  h4
+    font-size: 16px
+  h5
+    font-size: 14px
+  h6
+    font-size: 12px
+  p,span,label
+    font-size: 16px
+    @media (max-width: 340px)
+      font-size: 14px
+
+// Backtop 回到頂部
+.ud-backtop
+
+// Ellipsis 文字省略
+.ud-ellipsis
+  display: -webkit-box
+  overflow: hidden
+  // text-overflow: ellipsis
+  -webkit-line-clamp: 2
+  -webkit-box-orient: vertical
+
+// Phone 播打電話
+.ud-phone
+
+// Countdown 倒數計時
+.ud-countdown
+
+// QrCode 取得QRcode圖片
+.ud-qrcode
+  display: flex
+  justify-content: center
+  align-items: center
+  .icon-css
+    border: 3px solid rgba(#000, 0.2)
+    border-top: 3px solid #fff
+    border-radius: 50%
+    width: 32px
+    height: 32px
+    animation: spin .5s linear infinite
+    @keyframes spin
+      0%
+        transform: rotate(0deg)
+      100% 
+        transform: rotate(360deg)

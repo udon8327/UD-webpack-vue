@@ -1,0 +1,53 @@
+@import '_reset.sass'
+@import '~@/utils/ud-components.sass'
+
+@font-face
+  font-family: 'GreatVibes'
+  src: url('~@/font/GreatVibes-Regular.ttf')
+  // src: url('fonts/oel/OptimaEL-Text.eot?#iefix') format("embedded-opentype"), url('fonts/oel/OptimaEL-Text.svg#OptimaEL-Text') format("svg"), url('fonts/oel/OptimaEL-Text.ttf') format("truetype"), url('fonts/oel/OptimaEL-Text.woff') format("woff"), url('fonts/oel/OptimaEL-Text.woff2') format("woff2")
+  font-weight: normal
+  font-style: normal
+
+html,#app
+  height: 100%
+
+body
+  font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Hiragino Sans GB", "Microsoft JhengHei", "微軟正黑體", Arial ,sans-serif
+  height: 100%
+  overflow-x: hidden
+  -webkit-overflow-scrolling: touch
+  color: #333
+  margin: 0
+  background-color: #fcfcfc
+
+p,span,h1,h2,h3,h4,h5,h6,label
+  font-size: 16px
+  font-weight: normal
+  -webkit-text-size-adjust: none
+  margin: 0
+  @media (min-width: 640px)
+    font-size: 18px
+
+img
+  max-width: 100%
+  height: auto
+
+.container
+  max-width: 540px
+  margin: 0 auto
+  min-height: 100%
+  padding: 0
+  position: relative
+  overflow-x: hidden
+
+//global class
+.d-none,[v-cloak]
+  display: none 
+
+.animated
+  animation-duration: 1s !important
+
+.fade-enter-active, .fade-leave-active
+  transition: opacity .2s
+.fade-enter, .fade-leave-to
+  opacity: 0
